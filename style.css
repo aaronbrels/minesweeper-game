@@ -7,7 +7,7 @@ background-color: grey;
 
 }
 
-.grid div {  /* Only want to stle the divs inside this grid div, all other divs will be unaffected  */
+.grid div {  /* Only want to style the divs inside this grid div, all other divs will be unaffected  */
 height: 40px;
 width: 40px;
 }
