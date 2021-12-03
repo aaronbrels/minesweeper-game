@@ -1,0 +1,13 @@
+.grid {
+height: 400px;
+width: 400px;
+display: flex;
+flex-wrap: wrap;
+background-color: grey;
+
+}
+
+.grid div {  /* Only want to stle the divs inside this grid div, all other divs will be unaffected  */
+height: 40px;
+width: 40px;
+}
