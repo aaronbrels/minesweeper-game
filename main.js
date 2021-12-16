@@ -33,6 +33,10 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
 
         if (squares[i].classList.contains("valid")) { // If the square we are looping over contains the class of valid do the following
             if (i > 0 && !isLeftEdge && squares[i -1].classList.contains("bomb")) total ++  // if i is bigger than 0 and is not on the left edge and the squares to the left of it contain a bomb add 1 to the total | only works if all 3 parts are true
+            if (i > 9 && !isRightEdge && squares[i +1 -width].classList.contains("bomb")) total++  // if i is larger than 9 we want to check the square that is southwest to the one we are in currently, and is not at the right hand edge, and if the square and the index +1 -the whole width contains a bomb, add one to the total 
+            squares[i].setAttribute("data", total) // give each square a data attribute | this total indicates if any given square has a bomb in the square to the left of it or to the southwest of it if both has total of two | "data" is just a random name given
+            console.log(squares[i])
+        
         }
     }
 
