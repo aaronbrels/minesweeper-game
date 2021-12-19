@@ -37,8 +37,11 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
             if (i > 10 && squares[i - width].classList.contains("bomb")) total++ // if i is bigger than 10 and the square directly above it contains a bomb add one | don't need to check for right or left edge
             if (i > 11 && !isLeftEdge && squares[i-1].classList.contains("bomb")) total++ // if i is bigger than 11 and is not at the left edge and the square directly to the left of it and one row up contains a bomb add one to total
             if (i < 98 && !isRightEdge && squares[i +1].classList.contains("bomb")) total++ // if i is smaller than 98, and is not at the right edge, and the square directly to the right of it contains a bomb, add one 
-            
-            
+            if (i < 90 && isLeftEdge && squares[i -1 +width].classList.contains("bomb")) total ++ // if i is smaller than 90, and not at the left edge, and the square directly to the left and one whole width below add one to the total
+            if (i < 88 && !isRightEdge && squares[i + 1 +width].classList.contains("bomb")) total ++ // if i is smaller than 88, and is not at the right edge, and if the square to the right of it and one row down contains a bomb add 1
+            if (i < 89 && squares[i +width].classList.contains("bomb")) total++ // if i is smaller than 89, and the square directly below it contains a bomb add 1 to total
+
+
             
             squares[i].setAttribute("data", total) // give each square a data attribute | this total indicates if any given square has a bomb in the square to the left of it or to the southwest of it if both has total of two | "data" is just a random name given
             console.log(squares[i])
