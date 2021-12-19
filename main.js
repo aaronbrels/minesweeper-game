@@ -22,7 +22,14 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
        square.classList.add(shuffledArray[i]) // Adding class names to the squares with bombs in them ?????
        grid.appendChild(square)
        squares.push(square)
-    }
+    
+
+    // normal click
+    square.addEventListener("click", function(){  // on click i'm invoking the function click and into that click function i'm passing into it square
+        click(square) 
+
+    })
+}
 
     // add numbers
     for (let i = 0; i < squares.length; i++) {  // loop over the squares array
@@ -41,22 +48,19 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
             if (i < 88 && !isRightEdge && squares[i + 1 +width].classList.contains("bomb")) total ++ // if i is smaller than 88, and is not at the right edge, and if the square to the right of it and one row down contains a bomb add 1
             if (i < 89 && squares[i +width].classList.contains("bomb")) total++ // if i is smaller than 89, and the square directly below it contains a bomb add 1 to total
 
-
-            
             squares[i].setAttribute("data", total) // give each square a data attribute | this total indicates if any given square has a bomb in the square to the left of it or to the southwest of it if both has total of two | "data" is just a random name given
-            console.log(squares[i])
+            
         
         }
     }
-
-
-
-
-
-
 }
 createBoard()
 
-
-
 })
+
+// click on square actions 
+function click (square) {
+    if (square.classList.contains("bomb")) {
+        alert("Game Over")
+    }
+}
