@@ -61,6 +61,11 @@ createBoard()
 // click on square actions 
 function click (square) {
     if (square.classList.contains("bomb")) {
-        alert("Game Over")
+        console.log("Game Over") // can change this
+    } else {
+        let total = square.getAttribute("data") // getAttribute will get the number associated with the square
+        if(total != 0) {
+            square.classList.add("checked") // if the square is 0 add the class of checked to it
+        }
     }
 }
