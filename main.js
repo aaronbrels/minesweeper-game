@@ -65,7 +65,7 @@ function click (square) {
     if(isGameOver) return // if game is over we return out of the function
     if(square.classList.contains("checked") || square.classList.contains("flag")) return 
     if (square.classList.contains("bomb")) {
-        console.log("Game Over") // can change this
+         gameOver(square)
     } else {
         let total = square.getAttribute("data") // getAttribute will get the number associated with the square
         if(total != 0) {
@@ -127,11 +127,20 @@ function checkSquare(square, currentId) {
     }, 10 )
 }
 
+ //game over
+ function gameOver(square) {
+    console.log ('BOOM! Game Over!')
+    isGameOver = true
 
-
-
-
-
-
-
-})
+    //show ALL the bombs
+    squares.forEach(square => {
+      if (square.classList.contains('bomb')) {
+        square.innerHTML = '💣'
+        
+      }
+    })
+  }
+            
+            
+            
+        })
