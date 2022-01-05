@@ -62,6 +62,7 @@ createBoard()
 
 // click on square actions 
 function click (square) {
+    let currentId = square.id
     if(isGameOver) return // if game is over we return out of the function
     if(square.classList.contains("checked") || square.classList.contains("flag")) return 
     if (square.classList.contains("bomb")) {
@@ -73,6 +74,22 @@ function click (square) {
             square.innerHTML = total // once square has been checked we want to display the total and the square at the same time
             return 
         }
-        square.classList.add("checked") // if the square doesn't fall into the two categories above
+        checkSquare(square, currentId) // function that passes through the square you just clicked, and passes through the square's id
     }
+    square.classList.add("checked") // if the square doesn't fall into the two categories above
+}
+
+// check neighboring squares once square is clicked
+function checkSquare(square, currentId) {
+    let isLeftEdge = (currentId % width === 0) // 
+    let isRightEdge = (currentId % width === width -1)
+
+    setTimeout(() => {
+       if (currentId > 0 && isLeftEdge){
+           let newId = squares[parseInt(currentId) -1].id // get id of the square that is directly to the left of it
+           let newSquare = document.getElementById(newId) //
+           click(newSquare, newId)
+       } 
+
+    }, 10 )
 }
