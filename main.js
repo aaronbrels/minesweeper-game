@@ -58,7 +58,6 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
 }
 createBoard()
 
-})
 
 // click on square actions 
 function click (square) {
@@ -83,48 +82,56 @@ function click (square) {
 function checkSquare(square, currentId) {
     let isLeftEdge = (currentId % width === 0) // 
     let isRightEdge = (currentId % width === width -1)
-
+    
     setTimeout(() => {
-       if (currentId > 0 && isLeftEdge){
-           let newId = squares[parseInt(currentId) -1].id // get id of the square that is directly to the left of the currentId
-           let newSquare = document.getElementById(newId) //
-           click(newSquare) // pass back throuch the click function to be checked again
-       } 
-       if (currentId > 9 && !isRightEdge) {
-           let newId = squares[parseInt(currentId) +1 -width].id // get the id of the square directly to the right of the currentId
-           let newSquare = document.getElementById(newId)
-           click(newSquare)
-       }
-       if(currentId > 10) {
-        let newId = squares[parseInt(currentId -width)].id // get the id of the square directly above the currentId
-        let newSquare = document.getElementById(newId)
-        click(newSquare)
-       }
-       if(currentId > 11 && !isLeftEdge) {
-        let newId = squares[parseInt(currentId) -1 -width].id // get the id of the square directly the 1 left of it and 1 row up
-        let newSquare = document.getElementById(newId)
-        click(newSquare)
-       }
-       if (currentId < 98 && !isRightEdge) {
+        if (currentId > 0 && isLeftEdge){
+            let newId = squares[parseInt(currentId) -1].id // get id of the square that is directly to the left of the currentId
+            let newSquare = document.getElementById(newId) //
+            click(newSquare) // pass back throuch the click function to be checked again
+        } 
+        if (currentId > 9 && !isRightEdge) {
+            let newId = squares[parseInt(currentId) +1 -width].id // get the id of the square directly to the right of the currentId
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
+        if(currentId > 10) {
+            let newId = squares[parseInt(currentId -width)].id // get the id of the square directly above the currentId
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
+        if(currentId > 11 && !isLeftEdge) {
+            let newId = squares[parseInt(currentId) -1 -width].id // get the id of the square directly the 1 left of it and 1 row up
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
+        if (currentId < 98 && !isRightEdge) {
             let newId = squares[parseInt(currentId) +1 ].id
             let newSquare = document.getElementById(newId)
             click(newSquare)
-       }
-       if (currentId < 90 && !isLeftEdge) {
-        let newId = squares[parseInt(currentId) -1 +width ].id
-        let newSquare = document.getElementById(newId)
-        click(newSquare)
-       }
-       if (currentId < 88 && !isRightEdge) {
-        let newId = squares[parseInt(currentId) +1 +width ].id
-        let newSquare = document.getElementById(newId)
-        click(newSquare)
-       }
-       if(current < 89) {
-        let newId = squares[parseInt(currentId) +width ].id
-        let newSquare = document.getElementById(newId)
-        click(newSquare)
-       }
-
+        }
+        if (currentId < 90 && !isLeftEdge) {
+            let newId = squares[parseInt(currentId) -1 +width ].id
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
+        if (currentId < 88 && !isRightEdge) {
+            let newId = squares[parseInt(currentId) +1 +width ].id
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
+        if(current < 89) {
+            let newId = squares[parseInt(currentId) +width ].id
+            let newSquare = document.getElementById(newId)
+            click(newSquare)
+        }
     }, 10 )
 }
+
+
+
+
+
+
+
+
+})
