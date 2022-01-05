@@ -3,6 +3,8 @@ let grid = document.querySelector(".grid")
 let width = 10 // let javascript know that are grid is 10 squares width
 let squares = []
 let amountOfBombs = 20 
+let isGameOver = false
+
 
 
 // create the board
@@ -60,12 +62,17 @@ createBoard()
 
 // click on square actions 
 function click (square) {
+    if(isGameOver) return // if game is over we return out of the function
+    if(square.classList.contains("checked") || square.classList.contains("flag")) return 
     if (square.classList.contains("bomb")) {
         console.log("Game Over") // can change this
     } else {
         let total = square.getAttribute("data") // getAttribute will get the number associated with the square
         if(total != 0) {
             square.classList.add("checked") // if the square is 0 add the class of checked to it
+            square.innerHTML = total // once square has been checked we want to display the total and the square at the same time
+            return 
         }
+        square.classList.add("checked") // if the square doesn't fall into the two categories above
     }
 }
