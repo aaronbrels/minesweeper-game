@@ -2,16 +2,18 @@ document.addEventListener("DOMContentLoaded", () =>{
 let grid = document.querySelector(".grid")
 let width = 10 // let javascript know that are grid is 10 squares width
 let squares = []
-let amountOfBombs = 20 
+let bombAmount = 20 
+let flags = 0
 let isGameOver = false
 
 
 
 // create the board
+
 function createBoard() {
 // get shuffled game array with random bombs
-let bombArray = Array(amountOfBombs).fill("bomb") // "Array" is an array constructor
-let emptyArray = Array(width*width - amountOfBombs).fill("valid")
+let bombArray = Array(bombAmount).fill("bomb") // "Array" is an array constructor
+let emptyArray = Array(width*width - bombAmount).fill("valid")
 let gamesArray = emptyArray.concat(bombArray)
 let shuffledArray = gamesArray.sort(function(){
     return Math.random() -0.5
@@ -31,6 +33,12 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
         click(square) 
 
     })
+
+    //control and left click
+    square.oncontextmenu = function(e) { // pass through e for event in the function
+        e.preventDefault()
+        addFlag(square)
+    }
 }
 
     // add numbers
@@ -57,6 +65,23 @@ for (let i = 0; i < width*width; i++) {  // create a 100 squares
     }
 }
 createBoard()
+
+// add Flag with right click
+function addFlag(square) {
+    if (isGameOver) return
+    if (squares.classList.contains("checked") && (flags < bombAmount)){ // if the squares are not already checked i.e. does not contain the class of checked, and the flags that are placed are less than the bomb amount
+        if(!square.classList.contains("flag")) { // if a square does not contain a flag already add a class of flag to it (this line and the next is what this note is for)
+            square.classList.add("flag")
+            square.innerHTML = " 🚩"
+            flags ++ // add 1 to flags variable
+            checkForWin()
+        } else {
+            square.classList.remove("flag")
+            square.innerHTML = ""
+            flags --
+        }
+    }
+}
 
 
 // click on square actions 
@@ -119,7 +144,7 @@ function checkSquare(square, currentId) {
             let newSquare = document.getElementById(newId)
             click(newSquare)
         }
-        if(current < 89) {
+        if(currentId < 89) {
             let newId = squares[parseInt(currentId) +width ].id
             let newSquare = document.getElementById(newId)
             click(newSquare)
@@ -141,6 +166,22 @@ function checkSquare(square, currentId) {
     })
   }
             
+    //Check for win
+    function checkForWin() {
+       let matches = 0 
+
+        for(let i = 0; i < squares.length; i++) {
+            if (squares[i].classList.contains("flag") && squares[i].classList.contains("bomb")) {
+              matches ++  
+            }
+            if (matches === bombAmount) {
+                console.log("YOU WIN")
+                isGameOver = true
+            }
+        }
+    }
+    
+    
+
             
-            
-        })
+ })
